@@ -17,12 +17,12 @@
 <body>
 
 <div id="simple">
-	<article id="title" class="step" data-template="basic-0">
+	<article id="title" class="step basic">
 		<h1>Haskell</h1>
         <h2>La fainéantise enfin récompensée</h2>
         <author>Yann Esposito</author>
 	</article>
-	<article class="step" data-template="basic-1">
+	<article class="step basic">
         <h1>Propriétés</h1>
         <ul><li>Pur
         </li><li>Fainéant
@@ -30,7 +30,7 @@
         </li><li>Statiquement Typé
         </li></ul>
 	</article>
-	<article class="step" data-template="basic-2">
+	<article class="step basic">
         <h1>Utilisation</h1>
         <ul><li>Protège contre la distraction
         </li><li>Protège contre sa bêtise
@@ -38,7 +38,7 @@
         </li><li>Diminue le nombre de tests nécessaires
         </li></ul>
 	</article>
-    <article class="step" data-template="basic-3">
+    <article class="step basic">
         <h1>Hey ho!</h1>
         <ul><li>  Step 0
         </li><li> Step 1
@@ -46,7 +46,7 @@
         </li><li> Step 3
         </li></ul>
     </article>
-    <article class="step" data-template="big-4">
+    <article class="step basic">
         <h1>XXX</h1>
         <ul><li>  X Step 0
         </li><li> X Step 1
@@ -73,6 +73,13 @@ $(function() {
               rotate: {x: 80}
               })
   }
+  $(".step").attr("data-template",function(i){
+                  if (i==3) {
+                    return "big-"+i;
+                  } else {
+                    return "basic-"+i;
+                  }
+                  })
   $('#simple').jmpress({viewPort: {height: 800, width: 300, minScale: 0.01, maxScale: 100}});
 });
 </script>
