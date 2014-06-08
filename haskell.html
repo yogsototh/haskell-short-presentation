@@ -17,12 +17,12 @@
 <body>
 
 <div id="simple">
-	<article id="title" class="step">
+	<article id="title" class="step" data-template="basic-0">
 		<h1>Haskell</h1>
         <h2>La fainéantise enfin récompensée</h2>
         <author>Yann Esposito</author>
 	</article>
-	<article class="step" data-x="1500">
+	<article class="step" data-template="basic-1">
         <h1>Propriétés</h1>
         <ul><li>Pur
         </li><li>Fainéant
@@ -30,7 +30,7 @@
         </li><li>Statiquement Typé
         </li></ul>
 	</article>
-	<article class="step" data-x="3000">
+	<article class="step" data-template="basic-2">
         <h1>Utilisation</h1>
         <ul><li>Protège contre la distraction
         </li><li>Protège contre sa bêtise
@@ -38,6 +38,22 @@
         </li><li>Diminue le nombre de tests nécessaires
         </li></ul>
 	</article>
+    <article class="step" data-template="basic-3">
+        <h1>Hey ho!</h1>
+        <ul><li>  Step 0
+        </li><li> Step 1
+        </li><li> Step 2
+        </li><li> Step 3
+        </li></ul>
+    </article>
+    <article class="step" data-template="big-4">
+        <h1>XXX</h1>
+        <ul><li>  X Step 0
+        </li><li> X Step 1
+        </li><li> X Step 2
+        </li><li> X Step 3
+        </li></ul>
+    </article>
 </div>
 
 <div class="hint">
@@ -46,6 +62,17 @@
 
 <script type="text/javascript">
 $(function() {
+  for (var i=0; i<10; i++) {
+    $.jmpress("template","basic-"+i, {
+              x: 1500*i,
+              scale: 1,
+              })
+    $.jmpress("template","big-"+i, {
+              x: 1500*i + 400,
+              scale: 3,
+              rotate: {x: 80}
+              })
+  }
   $('#simple').jmpress({viewPort: {height: 800, width: 300, minScale: 0.01, maxScale: 100}});
 });
 </script>
