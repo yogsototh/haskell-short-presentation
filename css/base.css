@@ -144,4 +144,7 @@ ul li {
   color: white;
   font-family: Impact, sans-serif;
   width: 100%;
-  height: 100%; }
+  height: 100%;
+  padding: 1em;
+  background: no-repeat;
+  background-size: 100% auto; }
