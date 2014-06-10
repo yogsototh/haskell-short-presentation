@@ -139,3 +139,9 @@ ul li {
   #title author {
     color: #64b6b1;
     font-style: italic; }
+
+.background {
+  color: white;
+  font-family: Impact, sans-serif;
+  width: 100%;
+  height: 100%; }
