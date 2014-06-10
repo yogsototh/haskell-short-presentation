@@ -32,10 +32,10 @@
 	</article>
 	<article class="step basic">
         <h1>Notions classiques</h1>
-        <ul><li>Boucles <span class="hi">×</em>
-        </li><li>Variables <span class="hi">×</em>
-        </li><li>Classes <span class="hi">×</em>
-        </li><li>Héritage <span class="hi">×</em>
+        <ul><li>Boucles <span class="hi">✗</em>
+        </li><li>Variables <span class="hi">✗</em>
+        </li><li>Classes <span class="hi">✗</em>
+        </li><li>Héritage <span class="hi">✗</em>
         </li><li>etc...
         </li></ul>
 	</article>
@@ -46,12 +46,53 @@
         </div>
 	</article>
 	<article class="step basic">
-        <h1>Propriétés</h1>
-        <ul><li>Fonctionnel
-        </li><li>Pur
-        </li><li>Fainéant
-        </li><li>Statiquement Typé
+        <h1>Workflows (basic)</h1>
+        <ol style="line-height: 1.5em"><li>Programmer
+        </li><li>tester en cliquant/scrollant, REPL, etc...
+        </li><li>90% → détecter une erreur ⇒ <span class="hi">goto 1</span>
+        </li><li>envoyer en (recette/production)
+        </li><li>50% (10% si recette) → Erreur en production ⇒ <span class="hi">ARGH!!! goto 1</span>
+        </li></ol>
+	</article>
+	<article class="step basic">
+        <h1>Workflows (TDD)</h1>
+        <ol style="line-height: 1.5em"><li>Écrire des tests (voir workflow basic)
+        </li><li>Programmer
+        </li><li>lancer les tests (66% erreur ⇒ <span class="hi">goto 2 ou 1</span>)
+        </li><li>tester en cliquant/scrollant, REPL, etc...
+        </li><li>30% détecter une erreur ⇒ <span class="hi">goto 1</span>
+        </li><li>envoyer en (recette/production)
+        </li><li>5 à 10%: Erreur en production ⇒ <span class="hi">ARGH !!! goto 1</span>
+        </li></ol>
+	</article>
+	<article class="step basic">
+        <h1>Workflows Haskell (Type DD)</h1>
+        <ol style="line-height: 1.5em"><li>Programmer
+            </li><li>Compiler (90% erreur, corriger avec l'<span class="hi2">aide</span> <span class="hi">goto 1</span>)
+        </li><li>tester en cliquant/scrollant, REPL, etc...
+        </li><li>3% → détecter une erreur ⇒ <span class="hi">goto 1</span>
+        </li><li>envoyer en (recette/production)
+        </li><li>0.5% → Erreur en production ⇒ <span class="hi">ARGH !!! goto 1</span>
+        </li></ol>
+	</article>
+	<article class="step basic">
+        <h1>0,5% c'est encore trop!</h1>
+        <p>
+        <code>QuickCheck</code>, <code>SmallCheck</code>:<br/>
+            engendrent des tests unitaires aléatoirement
+            <br/>
+        <code>HUnit</code>:<br/>
+            Tests unitaires
+        </p>
+	</article>
+	<article class="step basic">
+        <h1>Propriétés (par défaut)</h1>
+        <ul><li>Fonctionnel par défaut
+        </li><li>Pur par défaut
+        </li><li>Fainéant par défaut
+        </li><li>Système de typage hors du commun
         </li></ul>
+        <span class="hi"><em>Encourage les bons choix par défaut</em></span>
 	</article>
 	<article class="step basic">
         <h1>Utilisation</h1>
@@ -76,16 +117,26 @@
         </li><li>Aide à la conception
         </li></ul>
     </article>
+
     <article class="step basic">
         <h1>Exemples (1)</h1>
 <pre class="haskell">[1,2,3] == [1..3]
 [1,2,3] == [1,2] ++ [3]
-[1,2,3] == 1:2:[]</pre>
+[1,2,3] == 1:2:[]
+[1,3..10] == [1,3,5,7,9]
+[1,3..10] !! 3 == 7
+[1,'a',3] <span class="hi">✗</span>
+[(1,'a'),(3,'c')] <span class="hi2">✓</span>
+</pre>
     </article>
     <article class="step basic">
         <h1>Exemples (2)</h1>
 <pre class="haskell">fib = 0:1:zipWith (+) fib (tail fib)
-fib !! 200
+
+take 15 fib ⇔
+[0,1,1,2,3,5,8,13,21,34,55,89,144,233,377]
+
+fib !! 200 ⇔
 280571172992510140037611932413038677189525
 </pre>
     </article>
@@ -106,6 +157,40 @@ sort (x:xs) = sort (filter (&lt; x) xs) ++
               [x] ++
               sort (filter (&gt;= x) xs)
 </pre>
+    </article>
+
+    <article class="step basic">
+        <h1>Le bon choix par défaut</h1>
+        <pre class="haskell" style="font-size: .5em">
+data Metres a = Metres a
+data Pieds a = Pieds a
+
+launchTheMissiles :: Metres Integer -> IO ()
+launchTheMissiles n = do ...
+
+launchTheMissile 100 <span class="hi">✗</span>
+hauteur = Pieds 3000
+launchTheMissile hauteur <span class="hi">✗</span>
+launchTheMissile (pieds2Metres hauteur) <span class="hi2">✓</span></pre>
+    </article>
+
+    <article class="step basic">
+        <h1>IO DSL</h1>
+<pre class="haskell">main = do
+    putStrLn "Quel est votre nom?"
+    nom <- readLine
+    putStrLn ("Bonjour " ++ nom)
+</pre>
+    </article>
+
+    <article class="step basic">
+        <h1>Conclusion</h1>
+        <ul><li>Language très haut niveau
+        </li><li>Rapide
+        </li><li>Sûr / moins de tests nécessaires
+        </li><li>Le bon choix par défaut
+        </li><li>Ouvre l'esprit
+        </li></ul>
     </article>
 
 </div>
