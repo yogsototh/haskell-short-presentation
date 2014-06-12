@@ -143,8 +143,22 @@ ul li {
 .background {
   color: white;
   font-family: Impact, sans-serif;
+  font-size: 1.5em;
   width: 100%;
   height: 100%;
   padding: 1em;
   background: no-repeat;
   background-size: 100% auto; }
+
+.right {
+  float: right; }
+
+.darktext {
+  color: black; }
+  .darktext p {
+    background: rgba(255, 255, 255, 0.8); }
+
+.cleartext {
+  color: white; }
+  .cleartext p {
+    background: rgba(0, 0, 0, 0.8); }
