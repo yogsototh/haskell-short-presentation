@@ -162,3 +162,6 @@ ul li {
   color: white; }
   .cleartext p {
     background: rgba(0, 0, 0, 0.8); }
+
+.small {
+  font-size: 0.8em; }
