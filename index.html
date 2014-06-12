@@ -20,6 +20,7 @@
 <div id="simple">
 	<article id="title" class="step basic">
 		<h1>Haskell</h1>
+        <code style="font-size: 5em; letter-spacing: -.1em">&gt;&gt;=</code>
         <h2>La fainéantise enfin récompensée</h2>
         <author>Yann Esposito</author>
 	</article>
@@ -252,6 +253,10 @@ launchTheMissile (pieds2Metres hauteur) <span class="hi2">✓</span></pre>
         </li></ul>
     </article>
 
+    <article class="step basic">
+        <h1>Questions ?</h1>
+    </article>
+
 </div>
 
 <div class="hint">
@@ -264,18 +269,29 @@ $(function() {
     $.jmpress("template","basic-"+i, {
               x: 2000*i,
               scale: 1,
-              })
+              });
     $.jmpress("template","big-"+i, {
               x: 2000*i,
               scale: 2,
-              rotate: {x: 90}
-              })
+              rotate: {x: -90}
+              });
+
+    $.jmpress("template","final-"+i, {
+              x: 2000,
+              y: 5000,
+              scale: 10,
+              rotate: {z: 90}
+              });
   }
   $(".step").attr("data-template",function(i){
-                  if (i==3) {
+                  if (i==4 || i==5 || i==6 || i==7 || i==8) {
                     return "big-"+i;
                   } else {
-                    return "basic-"+i;
+                    if (i==25) {
+                        return "final-"+i;
+                    } else {
+                        return "basic-"+i;
+                    }
                   }
                   })
   $('#simple').jmpress({viewPort: {height: 800, width: 300, minScale: 0.01, maxScale: 100}});
